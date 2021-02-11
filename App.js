@@ -13,7 +13,7 @@ const App = () => {
         <Stack.Screen
           name='Splash'
           component= { Splash }
-          options= {{ headerShow:false }}
+          options= {{ headerShown:false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

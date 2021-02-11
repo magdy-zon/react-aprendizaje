@@ -5,7 +5,8 @@ import {
   View,
   Text,
   Animated,
-  Image
+  Image,
+  TouchableOpacity
 } from 'react-native';
 
 //Constants
@@ -24,12 +25,30 @@ const descriptionSplash = [
     title: "Metodología de enseñanza 2",
     description: "",
     img: splash2
+  }, {
+    title: "Metodología de enseñanza 3",
+    description: "",
+    img: splash3
   }
 ];
 
 const Splash = () => {
+  const [completed, setCompleted] = React.useState(false);
 
   const scrollX = new Animated.Value(0);
+
+  React.useEffect(() => {
+    // Checks if user finished scrolling the onBoarding pages
+    scrollX.addListener(({ value }) => {
+      if(Math.floor(value / SIZES.width) === descriptionSplash.length - 1) {
+        setCompleted(true);
+      } else {
+        setCompleted(false);
+      }
+    })
+
+  }, []);
+
   //Render
   function renderContent() {
     return (
@@ -39,8 +58,8 @@ const Splash = () => {
           scrollEnabled
           delecerationRate={0}
           scrollEventThrottle={16}
-          snapToAlignment='center'
-          showsHorizontalScroll={false}
+          snapToAlignment="center"
+          showsHorizontalScrollIndicator={false}
           onScroll={ Animated.event([
             { nativeEvent: { contentOffset: { x: scrollX }}},
           ], { useNativeDriver: false })}
@@ -85,6 +104,25 @@ const Splash = () => {
                     textAlign: 'center'
                   }}>{item.description}</Text>
               </View>
+              <TouchableOpacity
+                style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  right: 0,
+                  width: 150,
+                  height: 60,
+                  paddingLeft: 20,
+                  justifyContent: 'center',
+                  borderTopLeftRadius: 30,
+                  borderBottomLeftRadius: 30,
+                  backgroundColor: COLORS.blue
+                }}
+                onPress={() => console.log("button")}
+              >
+                <Text style={{ ...FONTS.h2, color: COLORS.white}}>
+                  { completed ? "Iniciar" : "Avanzar"}
+                </Text>
+              </TouchableOpacity>
             </View>
           ))}
       </Animated.ScrollView>
@@ -92,18 +130,31 @@ const Splash = () => {
   };
 
   function renderDots() {
+    const dotPosition = Animated.divide(scrollX, SIZES.width);
+
     return (
       <View
         style= { styles.dotContainer }
       >
         {descriptionSplash.map((item, index) => {
-          return (
-            <View
-              key={`dot-${index}`}
-              style={[ styles.dot, { width: 20, height: 20 } ]}
-            >
+          const opacity = dotPosition.interpolate({
+            inputRange: [index - 1, index, index + 1],
+            outputRange: [0.3, 1, 0.3],
+            extrapolate: 'clamp'
+          });
 
-            </View>
+          const dotSize = dotPosition.interpolate({
+            inputRange: [index - 1, index, index + 1],
+            outputRange: [SIZES.base, 17, SIZES.base],
+            extrapolate: 'clamp'
+          })
+          return (
+            <Animated.View
+              key={`dot-${index}`}
+              opacity={opacity}
+              style={[ styles.dot, { width: dotSize, height: dotSize } ]}
+            >
+          </Animated.View>
           );
         })}
       </View>
@@ -132,12 +183,12 @@ const styles = StyleSheet.create({
   },
   dotRootContainer: {
     position: 'absolute',
-    bottom: SIZES.height > 700 ? '30%' : '20%'
+    bottom: SIZES.height > 700 ? '25%' : '10%'
   },
   dotContainer: {
     flexDirection: 'row',
     height: SIZES.padding,
-
+    alignItems: 'center'
   },
   dot: {
     borderRadius: SIZES.radius,
