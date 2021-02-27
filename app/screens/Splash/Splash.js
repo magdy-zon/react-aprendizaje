@@ -32,7 +32,7 @@ const descriptionSplash = [
   }
 ];
 
-const Splash = () => {
+const Splash = ({ navigation }) => {
   const [completed, setCompleted] = React.useState(false);
 
   const scrollX = new Animated.Value(0);
@@ -105,19 +105,8 @@ const Splash = () => {
                   }}>{item.description}</Text>
               </View>
               <TouchableOpacity
-                style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  right: 0,
-                  width: 150,
-                  height: 60,
-                  paddingLeft: 20,
-                  justifyContent: 'center',
-                  borderTopLeftRadius: 30,
-                  borderBottomLeftRadius: 30,
-                  backgroundColor: COLORS.blue
-                }}
-                onPress={() => console.log("button")}
+                style={ styles.buttonSplash }
+                onPress={() => navigation.navigate('Profile') }
               >
                 <Text style={{ ...FONTS.h2, color: COLORS.white}}>
                   { completed ? "Iniciar" : "Avanzar"}
@@ -175,6 +164,18 @@ const Splash = () => {
 };
 
 const styles = StyleSheet.create({
+  buttonSplash: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: 150,
+    height: 60,
+    paddingLeft: 20,
+    justifyContent: 'center',
+    borderTopLeftRadius: 30,
+    borderBottomLeftRadius: 30,
+    backgroundColor: COLORS.blue
+  },
   container: {
     flex: 1,
     justifyContent: 'center',

@@ -1,6 +1,11 @@
-
+import Home from './Home/Home';
+import Profile from './Profile/Profile';
+import Questionnaire from './Questionnaire/Questionnaire';
 import Splash from './Splash/Splash';
 
 export {
-  Splash
+  Home,
+  Profile,
+  Questionnaire,
+  Splash,
 }
