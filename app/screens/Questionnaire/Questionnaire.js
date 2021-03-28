@@ -5,17 +5,17 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
-  View,
-  TextInput
+  View
 } from 'react-native';
 import { useForm } from 'react-hook-form';
 
-//Constants
+//Constants and Theme
 import { images, theme } from '../../constants';
-//Theme
 const { COLORS, FONTS, SIZES } = theme;
 
+// We return the Questionnaire consts
 const questions = [
   {
     question: '¿Has usado antes alguna simulación, página web o App para aprender matemáticas?',
@@ -38,7 +38,6 @@ const questions = [
     id: 'question5'
   }
 ];
-
 const randomQuestions = [
   {
     random: 'Un hombre quiere tener una cuerda suficientemente larga para atar dos postes separados por 18 m, pero solo tiene trozos de cuerda de 1,5 m de largo. ¿Cuántas de estas piezas necesitará atar juntas para luego atarlas a los postes?'
@@ -53,7 +52,6 @@ const randomQuestions = [
 
 const Questionnaire = ({ navigation }) => {
   const { register, handleSubmit, setValue } = useForm();
-  const onSubmit = data => console.log(data);
 
   useEffect(() => {
     register('question1');
@@ -63,23 +61,16 @@ const Questionnaire = ({ navigation }) => {
     register('question5');
   }, [register]);
 
-  function randomNumber(min, max) {
-      return Math.random() * (max - min) + min - 1;
+  const randomNumber = (min, max) => {
+    return Math.random() * (max - min) + min - 1
   }
 
-  function renderRandomQuestion() {
-    //
-    // return (
-    //
-    // );
-  }
-
+  // Render Questionnaire iterating the array
   function renderQuestionnaire() {
     const randomNum = parseInt(randomNumber(1, randomQuestions.length));
-    console.log('----');
-    console.log(randomNum);
+
     return (
-      <View style= {{ marginVertical: 10 }}>
+      <View>
         { questions.map((item, index) => {
           return (
             <View style= {{ marginVertical: 10, }}>
@@ -94,40 +85,54 @@ const Questionnaire = ({ navigation }) => {
                 onChangeText= {text => {
                   setValue(`question${index}`, text);
                 }}
+                style= { styles.borderInput }
                 />
             </View>
           );
         })}
-        <View style= {{ marginVertical: 10 }}>
-            <Text style={{
-              ...FONTS.body4,
-              textAlign: 'left'
-            }}>
-              { randomQuestions[randomNum].random }
-            </Text>
+        <View>
+          <Text style={{
+            ...FONTS.body4,
+            textAlign: 'left'
+          }}>
+            { randomQuestions[randomNum].random }
+          </Text>
+          <Text style={{
+            ...FONTS.body4,
+            textAlign: 'left',
+            marginTop: 10,
+          }}>
+            Comenta tu respuesta
+          </Text>
+          <TextInput
+            name='question'
+            onChangeText= {text => {
+              setValue(`question${index}`, text);
+            }}
+            style= { styles.borderInput }
+            />
           </View>
       </View>
-
     );
   }
 
-
-
-
   return (
-    <SafeAreaView style= { styles.container }>
-      <ScrollView>
-        <View style={{
-          marginTop: '20%',
-        }}>
+    <SafeAreaView>
+      <ScrollView style={{
+        paddingHorizontal: 20,
+        paddingTop:60,
+        paddingBottom: 40
+      }}>
+        <View>
           <Text style={{ ...FONTS.h2 }}>
-          ¿Podrías ayudarnos a contestar las siguientes preguntas?</Text>
+          Contesta las siguientes preguntas
+          </Text>
         </View>
         <View>
           {renderQuestionnaire()}
           <TouchableOpacity
             type= 'submit'
-            style={ styles.submitQuestion }
+            style={ styles.buttonSubmitQuestion }
             onPress={
               () => {
                 handleSubmit();
@@ -155,18 +160,28 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     backgroundColor: COLORS.white,
-    paddingLeft: '5%',
-    paddingRight: '5%'
+    marginLeft: '5%',
+    marginRight: '5%',
+    marginHorizontal: 10
   },
-  submitQuestion: {
+  buttonSubmitQuestion: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     height: 60,
-    width: 160,
+    width: '100%',
     backgroundColor: COLORS.blue,
     color: COLORS.white,
     borderRadius: SIZES.radius,
+    marginBottom: 100,
+  },
+  borderInput: {
+    borderColor: '#DDDDDD',
+    borderRadius: SIZES.radius,
+    borderWidth: 1.5,
+    height: 60,
+    marginTop: 5,
+    marginBottom: 5,
   }
 });
 

@@ -64,7 +64,7 @@ const Profile = ({ navigation }) => {
       }}>
         <TouchableOpacity
           style={ styles.buttonNext }
-          onPress={() => navigation.navigate('Questionnaire') }
+          onPress={() => navigation.navigate('QuestionnaireTeacher') }
         >
           <Text style={{ ...FONTS.h2, color: COLORS.white }}>
             SIGUIENTE
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   buttonNext: {
     position: 'absolute',
     top: 120,
-    width: 150,
+    width: '100%',
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',

@@ -6,10 +6,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Home } from './app/screens/';
 import { Profile } from './app/screens/';
 import { Questionnaire } from './app/screens/';
+import { QuestionnaireTeacher } from './app/screens/';
 import { Splash } from './app/screens/';
 
 const Stack = createStackNavigator();
 const App = () => {
+  console.log(Profile);
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -26,6 +28,11 @@ const App = () => {
         <Stack.Screen
           name='Questionnaire'
           component= { Questionnaire }
+          options= {{ headerShown:false }}
+        />
+        <Stack.Screen
+          name='QuestionnaireTeacher'
+          component= { QuestionnaireTeacher }
           options= {{ headerShown:false }}
         />
         <Stack.Screen
