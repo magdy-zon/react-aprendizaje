@@ -2,6 +2,7 @@ import React from 'react';
 import {
   StyleSheet,
   Text,
+  TouchableOpacity,
   View
 } from 'react-native';
 
@@ -10,12 +11,12 @@ import { images, theme } from '../constants';
 const { COLORS, FONTS, SIZES } = theme;
 
 
-const Card = (args) => {
+const Card = (props) => {
   return (
     <View style={ styles.card } >
       <View>
         <Text style= { styles.headerCard }>
-          {args.title}
+          {props.title}
         </Text>
       </View>
       <View>
@@ -26,8 +27,8 @@ const Card = (args) => {
           <Text style={{
             ...FONTS.body4,
             marginHorizontal: '15%'
-          }}>{args.text}</Text>
-        </TouchableOpacity>
+          }}>{props.text}</Text>
+          </TouchableOpacity>
       </View>
     </View>
   );

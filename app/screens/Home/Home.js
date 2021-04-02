@@ -16,40 +16,23 @@ const { COLORS, FONTS, SIZES } = theme;
 import Card from '../../components/Card';
 
 const Home = ({ navigation }) => {
+  const activityDetails = [
+    {
+      title: 'Aprendiendo a mirar el mundo'
+    }, {
+      title: 'Veamos que sucede con ciertas poblaciones en un ambiente'
+    }
+  ];
+
   return (
     <SafeAreaView style= { styles.container }>
-      <View style={ styles.card } >
-        <View>
-          <Text style= { styles.headerCard }>
-            1. Aprendiendo a mirar el mundo
-          </Text>
-        </View>
-        <View>
-          <TouchableOpacity
-            style={ styles.detailActivity }
-            disabled={true}
-          >
-            <Text style={{
-              ...FONTS.body4,
-              marginHorizontal: '15%'
-            }}>Detalle</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View style={ styles.card } >
-        <Text style= { styles.headerCard } >
-          2. Veamos que sucede con ciertas poblaciones en un ambiente
-        </Text>
-        <TouchableOpacity style={ styles.detailActivity }>
-          <Text style={{
-            ...FONTS.body4,
-            marginHorizontal: '15%'
-          }}>Detalle</Text>
-        </TouchableOpacity>
-      </View>
-      <Card>
+      {
+        activityDetails.map((item, index) => {
+          return <Card title={index+1 + ' ' + item.title} text='My text' />
+        })
+      }
 
-      </Card>
+      <Card title='Title' text='My text' />
     </SafeAreaView>
   );
 };
