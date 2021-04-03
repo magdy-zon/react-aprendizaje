@@ -3,6 +3,9 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
 import { Home } from './app/screens/';
 import { Profile } from './app/screens/';
 import { Questionnaire } from './app/screens/';
@@ -10,8 +13,10 @@ import { QuestionnaireTeacher } from './app/screens/';
 import { Splash } from './app/screens/';
 
 const Stack = createStackNavigator();
+
+
 const App = () => {
-  console.log(Profile);
+  
   return (
     <NavigationContainer>
       <Stack.Navigator>
