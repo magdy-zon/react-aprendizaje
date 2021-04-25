@@ -1,1 +1,4 @@
-export const _TO_PROFILE = '_TO_PROFILE';
+export const SPLASH = 'SPLASH';
+export const PROFILE = 'PROFILE';
+export const QUESTIONNAIRE = 'QUESTIONNAIRE';
+export const HOME = 'HOME';

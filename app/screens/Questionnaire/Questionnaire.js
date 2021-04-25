@@ -125,7 +125,7 @@ const Questionnaire = ({ navigation }) => {
       }}>
         <View>
           <Text style={{ ...FONTS.h2 }}>
-          Contesta las siguientes preguntas
+          Ayúdanos respondiendo las siguientes preguntas
           </Text>
         </View>
         <View>
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     marginBottom: 100,
   },
   borderInput: {
-    borderColor: '#DDDDDD',
+    borderColor: COLORS.borderInput,
     borderRadius: SIZES.radius,
     borderWidth: 1.5,
     height: 60,

@@ -1,38 +1,51 @@
-import { combineReducer } = from 'redux';
+import { combineReducers } from 'redux';
 import {
-  _TO_PROFILE
+  SPLASH,
+  PROFILE,
+  QUESTIONNAIRE,
+  HOME,
 } from './Types';
 
 const INITIAL_STATE_APP = {
   current: [],
+  profile: null,
   possible: [
-    'SPLASH',
-    'PROFILE',
-    'QUESTIONNAIRE',
-    'HOME'
+    SPLASH,
+    PROFILE,
+    QUESTIONNAIRE,
+    HOME
   ]
 };
 
 const reducer = (state = INITIAL_STATE_APP, action) => {
   switch (action.type) {
-    case '_TO_PROFILE':
-      const {
-        current,
-        possible,
-      } = state;
+    case PROFILE:
+      const current = state.current;
+      current.push(action.type);
+      return Object.assign({}, state, {
+        current: current
+      });
+    case QUESTIONNAIRE:
+      const currentQ = state.current;
+      currentQ.push(action.type);
+      return Object.assign({}, state, {
+        current: currentQ,
+        profile: action.userType
+      });
+    case HOME:
+      const currentH = state.current;
+      currentH.push(action.type);
+      return Object.assign({}, state, {
+        current: currentH,
+        profile: action.userType
+      });
 
-      const nextView = possible.splice(action.payload, 1);
 
-      current.push(nextView);
-
-      const actualView = { current, possible }
-
-      return actualView;
     default:
-      return state
+      return state;
   }
 };
 
-export default combineReducer({
+export default combineReducers({
   generalStatus: reducer
 });

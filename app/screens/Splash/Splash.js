@@ -19,15 +19,15 @@ const { COLORS, FONTS, SIZES } = theme;
 const descriptionSplash = [
   {
     title: "Metodología de enseñanza 1",
-    description: "",
+    description: "Some amazing text describing the app",
     img: splash1
   }, {
     title: "Metodología de enseñanza 2",
-    description: "",
+    description: "Some amazing text describing the app",
     img: splash2
   }, {
     title: "Metodología de enseñanza 3",
-    description: "",
+    description: "Some amazing text describing the app",
     img: splash3
   }
 ];
@@ -72,8 +72,8 @@ const Splash = ({ navigation }) => {
               <View
                 style={{
                   flex: 1,
-                  alignItems: 'center',
-                  justifyContent: 'center'
+                  // alignItems: 'center',
+                  // justifyContent: 'center'
                 }}
                 >
                 <Image
@@ -88,21 +88,19 @@ const Splash = ({ navigation }) => {
               <View
                 style={{
                   position: 'absolute',
-                  bottom: '10%',
+                  bottom: '35%',
                   left: 40,
                   right: 40
                 }}
               >
                 <Text style={{
-                    ...FONTS.h2,
+                    ...FONTS.h3,
                     color: COLORS.white,
                     textAlign: 'center'
                   }}>{item.title}</Text>
-                <Text style={{
-                    ...FONTS.body1,
-                    color: COLORS.gray,
-                    textAlign: 'center'
-                  }}>{item.description}</Text>
+                <Text style={ styles.textDescription }>
+                  {item.description}
+                </Text>
               </View>
               <TouchableOpacity
                 style={ styles.buttonSplash }
@@ -166,7 +164,7 @@ const Splash = ({ navigation }) => {
 const styles = StyleSheet.create({
   buttonSplash: {
     position: 'absolute',
-    bottom: 0,
+    bottom: '10%',
     right: 0,
     width: 150,
     height: 60,
@@ -195,6 +193,11 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.radius,
     backgroundColor: COLORS.blue,
     marginHorizontal: SIZES.radius / 2
+  },
+  textDescription: {
+    ...FONTS.body2,
+    color: COLORS.gray,
+    textAlign: 'center',
   }
 });
 

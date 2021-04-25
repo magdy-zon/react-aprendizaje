@@ -6,19 +6,36 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import Reducer from './app/reducer/Reducer';
+import Reducer from './app/reducer/Reducers';
 import { Home } from './app/screens/';
 import { Profile } from './app/screens/';
 import { Questionnaire } from './app/screens/';
 import { QuestionnaireTeacher } from './app/screens/';
 import { Splash } from './app/screens/';
+import { ActivityOne } from './app/screens/';
 
 const Stack = createStackNavigator();
-
+// Manage Reducer and import actions
+import {
+  changeToProfile,
+  changeToQuizz,
+  changeToHome
+} from './app/reducer/Actions'
 const store = createStore(Reducer);
 
-const App = () => {
+// console.log('-----state');
+// console.log(store.getState());
+// store.dispatch(changeToProfile('PROFILE'));
+// console.log('-----state');
+// console.log(store.getState());
+// store.dispatch(changeToQuizz('QUESTIONNAIRE', 'STUDENT'));
+// console.log('-----state');
+// console.log(store.getState());
+// store.dispatch(changeToHome('HOME', 'STUDENT'));
+// console.log('-----state');
+// console.log(store.getState());
 
+const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -46,6 +63,10 @@ const App = () => {
           <Stack.Screen
             name='Home'
             component= { Home }
+          />
+          <Stack.Screen
+            name='Actividad 1'
+            component= { ActivityOne }
           />
         </Stack.Navigator>
       </NavigationContainer>

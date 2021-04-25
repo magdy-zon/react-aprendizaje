@@ -5,13 +5,18 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 //Constants and Theme
 import { images, theme } from '../constants';
-const { COLORS, FONTS, SIZES } = theme;
+const { CARD, COLORS, FONTS, SIZES } = theme;
 
+// Import vector icons
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const Card = (props) => {
+  const navigation = useNavigation();
+
   return (
     <View style={ styles.card } >
       <View>
@@ -19,29 +24,45 @@ const Card = (props) => {
           {props.title}
         </Text>
       </View>
-      <View>
-        <TouchableOpacity
-          style={ styles.detailActivity }
-          disabled={true}
-        >
-          <Text style={{
-            ...FONTS.body4,
-            marginHorizontal: '15%'
-          }}>{props.text}</Text>
-          </TouchableOpacity>
+      <View style= { styles.cardContainer }>
+        <Icon.Button
+          size={20}
+          name="file1"
+          color= { CARD.buttonDisabled }
+          style= { styles.cardIcon }
+          onPress={() => navigation.navigate('Actividad 1')}>
+        </Icon.Button>
+        <Icon.Button
+          size={20}
+          name="bulb1"
+          color= { CARD.buttonDisabled }
+          style= { styles.cardIcon }
+          onPress={() => alert('Login with Facebook')}>
+        </Icon.Button>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  // Styles for enabled card
   card: {
-    backgroundColor: COLORS.white,
-    margin: 10,
-    padding: 10,
-    borderRadius: SIZES.radius,
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    backgroundColor: COLORS.successActivity,
+    marginTop: 30,
+    marginHorizontal: '5%',
+    paddingTop: 15,
+    paddingBottom: 20,
+    paddingHorizontal: 10,
+    borderRadius: CARD.borderRadius,
+  },
+  cardContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  cardIcon: {
+    alignSelf: 'center',
+    backgroundColor: COLORS.successActivity,
+    paddingLeft: 20,
   },
   detailActivity: {
     justifyContent: 'center',

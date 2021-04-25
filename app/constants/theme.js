@@ -5,8 +5,16 @@ export const COLORS = {
   black: '#1E1F20',
   white: '#FFFFFF',
   gray: '#6A6A6A',
-  blue: '#0682FE'
+  blue: '#0682FE',
+  successActivity: '#F2FFF4',
+  borderInput: '#A3D3FF',
 };
+
+export const CARD = {
+  backgroundColor: '#F2FFF4',
+  buttonDisabled: '#bdbdbd',
+  borderRadius: 20, 
+}
 
 export const SIZES = {
   //Global sizes
@@ -49,5 +57,5 @@ export const FONTS = {
   body4: { fontSize: SIZES.body4, lineHeight: 22 },
 };
 
-const appTheme = { COLORS, SIZES, FONTS };
+const appTheme = { COLORS, SIZES, FONTS, CARD };
 export default appTheme;
