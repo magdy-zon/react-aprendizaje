@@ -28,7 +28,7 @@ const Home = ({ navigation }) => {
     <SafeAreaView style= { styles.container }>
       {
         activityDetails.map((item, index) => {
-          return <Card title={index+1 + '. ' + item.title} />
+          return <Card key={index} title={index+1 + '. ' + item.title} />
         })
       }
     </SafeAreaView>

@@ -22,21 +22,23 @@ const ActivityOne = ({navigation}) => {
   const figures = [
     circle1
   ];
-  const [ circles, addCircles ] = useState(figures);
-  // console.log(circles);
-  // console.log(figures);
-  // console.log(figures.push(circle2));
-  // console.log('--');
-  // console.log(figures);
+  const [ circles, setCircles ] = useState(figures);
+
+  useEffect(() => {
+    circles.push(new FCircle());
+  }, [circles]);
+  const updateCircles = () => {
+    console.log('l');
+    circles.push(new FCircle());
+    setCircles(circles);
+  }
 
   return (
     <SafeAreaView>
       <ScrollView style={{
         paddingHorizontal: 20,
       }}>
-        <View
-          style={styles.container}
-        >
+        <View style={styles.container} >
           <Text style={{ ...FONTS.h2, color: '#000' }}>
           Title
           </Text>
@@ -45,19 +47,15 @@ const ActivityOne = ({navigation}) => {
           </Text>
         </View>
         <View style={ styles.canvas } >
-          <Svg
-            onPress={() => {
-              addCircles(circles.push(new FCircle()))
-            }}
-            >
+          <Svg onPress={updateCircles }>
             {circles.map(element => {
-                 return element;
+              return element;
             })}
           </Svg>
         </View>
         <View style={styles.container} >
           <Text style={{ ...FONTS.body4, color: '#000' }}>
-          ¿Qué pudiste observar?
+          ¿Qué comportamiento observas?
           </Text>
         </View>
       </ScrollView>

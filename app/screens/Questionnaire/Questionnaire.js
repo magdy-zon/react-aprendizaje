@@ -81,6 +81,7 @@ const Questionnaire = ({ navigation }) => {
                 { item.question }
               </Text>
               <TextInput
+                key={index}
                 name='question'
                 onChangeText= {text => {
                   setValue(`question${index}`, text);

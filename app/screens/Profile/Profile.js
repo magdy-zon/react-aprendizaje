@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     justifyContent: 'center',
     margin: 10,
-    borderColor: COLORS.blue,
+    borderColor: COLORS.borderInput,
     borderWidth: 1,
     height: 70,
     borderRadius: SIZES.radius,

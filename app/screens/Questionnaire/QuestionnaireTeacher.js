@@ -62,7 +62,7 @@ const QuestionnaireTeacher = ({ navigation }) => {
       <View>
       { questions.map((item, index) => {
         return (
-          <View style= {{ marginVertical: 10, }}>
+          <View style= {{ marginVertical: 10 }}>
             <Text style={{
               ...FONTS.body4,
               textAlign: 'left'
@@ -70,6 +70,7 @@ const QuestionnaireTeacher = ({ navigation }) => {
               { item.question }
             </Text>
             <TextInput
+              key={index}
               name='question'
               onChangeText= {text => {
                 setValue(`question${index}`, text);
