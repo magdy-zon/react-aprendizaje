@@ -1,25 +1,24 @@
 import React from 'react';
 import {
-  StyleSheet
+  View
 } from 'react-native';
-import Svg, { Circle } from 'react-native-svg';
+import { Circle} from 'react-native-svg';
+import { v4 as uuidv4 } from 'uuid';
 
-import { theme } from '../../constants';
 
-const FCircle = () => {
+const FCircle = (props) => {
+  console.log(props);
   const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
   const width = 300;
   const height = 600;
-
-  const randomW = random(0, width);
-  const randomH = random(0, height);
-  const radio = 10;
-  const color = 'green';
+  const radio = props.r;
+  const color = props.color;
 
   return (
     <Circle
-      cx = {randomW}
-      cy = {randomH}
+      key={uuidv4()}
+      cx = {random(0, width) + radio/2}
+      cy = {random(0, height) + radio/2}
       r = {radio}
       fill={color}
     />

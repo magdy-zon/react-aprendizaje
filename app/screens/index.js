@@ -3,7 +3,8 @@ import Profile from './Profile/Profile';
 import Questionnaire from './Questionnaire/Questionnaire';
 import QuestionnaireTeacher from './Questionnaire/QuestionnaireTeacher';
 import Splash from './Splash/Splash';
-import ActivityOne from './Activities/Activity_one';
+import ActivityOne from './Activities/ActivityOne';
+import ActivityTwo from './Activities/ActivityTwo';
 
 export {
   Home,
@@ -12,4 +13,5 @@ export {
   QuestionnaireTeacher,
   Splash,
   ActivityOne,
+  ActivityTwo,
 }

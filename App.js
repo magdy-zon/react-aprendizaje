@@ -12,7 +12,7 @@ import { Profile } from './app/screens/';
 import { Questionnaire } from './app/screens/';
 import { QuestionnaireTeacher } from './app/screens/';
 import { Splash } from './app/screens/';
-import { ActivityOne } from './app/screens/';
+import { ActivityTwo } from './app/screens/';
 
 const Stack = createStackNavigator();
 // Manage Reducer and import actions
@@ -51,11 +51,6 @@ const App = () => {
             options= {{ headerShown:false }}
           />
           <Stack.Screen
-            name='Questionnaire'
-            component= { Questionnaire }
-            options= {{ headerShown:false }}
-          />
-          <Stack.Screen
             name='QuestionnaireTeacher'
             component= { QuestionnaireTeacher }
             options= {{ headerShown:false }}
@@ -63,10 +58,14 @@ const App = () => {
           <Stack.Screen
             name='Home'
             component= { Home }
+            options={{
+              headerLeft: null,
+              headerTitleStyle: { textAlign: 'center'},
+              title: 'Inicio'}}
           />
           <Stack.Screen
-            name='Actividad 1'
-            component= { ActivityOne }
+            name='Actividad 2'
+            component= { ActivityTwo }
           />
         </Stack.Navigator>
       </NavigationContainer>
