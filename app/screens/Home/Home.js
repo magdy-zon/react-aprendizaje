@@ -18,8 +18,10 @@ import Card from '../../components/Card';
 const Home = ({ navigation }) => {
   const activityDetails = [
     {
+      view: 'Actividad 1',
       title: 'Aprendiendo a observar el mundo'
     }, {
+      view: 'Actividad 2',
       title: 'Veamos que sucede con ciertas poblaciones en un ambiente'
     }
   ];
@@ -28,7 +30,7 @@ const Home = ({ navigation }) => {
     <SafeAreaView style= { styles.container }>
       {
         activityDetails.map((item, index) => {
-          return <Card key={index} title={index+1 + '. ' + item.title} />
+          return <Card key={index} title={index+1 + '. ' + item.title} view={item.view} />
         })
       }
     </SafeAreaView>

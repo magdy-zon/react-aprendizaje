@@ -8,14 +8,23 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import { createStore } from 'redux';
+import Reducer from '../../../app/reducer/Reducers';
+import { changeToQuizz } from '../../../app/reducer/Actions';
+
+const store = createStore(Reducer);
 
 //Constants
 import { images, theme } from '../../constants';
-
-//Theme
 const { COLORS, FONTS, SIZES } = theme;
 
 const Profile = ({ navigation }) => {
+  console.log('-----state 2');
+  // console.log(store.getState());
+
+
+
+  let selectedProfile = '';
   return (
     <SafeAreaView style= { styles.container }>
       <View style={{
@@ -27,7 +36,8 @@ const Profile = ({ navigation }) => {
           ...FONTS.h1
         }}>Eres:</Text>
       </View>
-      <TouchableOpacity style={ styles.ocuppationSelectable }>
+      <TouchableOpacity style={ styles.ocuppationSelectable }
+        onPress={() => selectedProfile = 'STUDENT'}>
         <Image
           source={ images.student }
           style={{
@@ -42,7 +52,8 @@ const Profile = ({ navigation }) => {
           marginHorizontal: '25%'
         }}>Estudiante</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={ styles.ocuppationSelectable}>
+      <TouchableOpacity style={ styles.ocuppationSelectable}
+        onPress={() => selectedProfile = 'PROFESSOR'}>
         <Image
           source={ images.professor }
           style={{
@@ -64,8 +75,11 @@ const Profile = ({ navigation }) => {
       }}>
         <TouchableOpacity
           style={ styles.buttonNext }
-          onPress={() => navigation.navigate('QuestionnaireTeacher') }
-        >
+          onPress={() => {
+            console.log(selectedProfile);
+            store.dispatch(changeToQuizz(selectedProfile));
+            navigation.navigate('Questionnaire');
+        }}>
           <Text style={{ ...FONTS.h2, color: COLORS.white }}>
             SIGUIENTE
           </Text>

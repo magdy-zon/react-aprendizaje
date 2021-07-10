@@ -8,6 +8,10 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
+import { createStore } from 'redux';
+import Reducer from '../../../app/reducer/Reducers';
+import { changeToProfile } from '../../../app/reducer/Actions'
+const store = createStore(Reducer);
 
 //Constants
 import { images, theme } from '../../constants';
@@ -33,6 +37,9 @@ const descriptionSplash = [
 ];
 
 const Splash = ({ navigation }) => {
+  console.log('-----state 1');
+  // console.log(store.getState());
+
   const [completed, setCompleted] = React.useState(false);
 
   const scrollX = new Animated.Value(0);
@@ -104,8 +111,10 @@ const Splash = ({ navigation }) => {
               </View>
               <TouchableOpacity
                 style={ styles.buttonSplash }
-                onPress={() => navigation.navigate('Profile') }
-              >
+                onPress={() => {
+                  store.dispatch(changeToProfile());
+                  navigation.navigate('Profile');
+                }}>
                 <Text style={{ ...FONTS.h2, color: COLORS.white}}>
                   { completed ? "Iniciar" : "Avanzar"}
                 </Text>

@@ -10,7 +10,6 @@ import Reducer from './app/reducer/Reducers';
 import { Home } from './app/screens/';
 import { Profile } from './app/screens/';
 import { Questionnaire } from './app/screens/';
-import { QuestionnaireTeacher } from './app/screens/';
 import { Splash } from './app/screens/';
 import { ActivityTwo } from './app/screens/';
 
@@ -25,10 +24,7 @@ const store = createStore(Reducer);
 
 // console.log('-----state');
 // console.log(store.getState());
-// store.dispatch(changeToProfile('PROFILE'));
-// console.log('-----state');
-// console.log(store.getState());
-// store.dispatch(changeToQuizz('QUESTIONNAIRE', 'STUDENT'));
+// store.dispatch(changeToQuizz('QUESTIONNAIRE', 'PROFESSOR'));
 // console.log('-----state');
 // console.log(store.getState());
 // store.dispatch(changeToHome('HOME', 'STUDENT'));
@@ -36,6 +32,7 @@ const store = createStore(Reducer);
 // console.log(store.getState());
 
 const App = () => {
+
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -51,8 +48,8 @@ const App = () => {
             options= {{ headerShown:false }}
           />
           <Stack.Screen
-            name='QuestionnaireTeacher'
-            component= { QuestionnaireTeacher }
+            name='Questionnaire'
+            component= { Questionnaire }
             options= {{ headerShown:false }}
           />
           <Stack.Screen

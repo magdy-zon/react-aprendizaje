@@ -5,9 +5,10 @@ import {
   HOME
 } from './Types';
 
-export const changeToProfile = () => {
+export const changeToProfile = (type, userType) => {
   return {
     type: PROFILE,
+    userType: userType
   }
 };
 

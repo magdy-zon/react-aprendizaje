@@ -1,13 +1,9 @@
 import React from 'react';
-import {
-  View
-} from 'react-native';
 import { Circle} from 'react-native-svg';
 import { v4 as uuidv4 } from 'uuid';
 
 
 const FCircle = (props) => {
-  console.log(props);
   const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
   const width = 300;
   const height = 600;

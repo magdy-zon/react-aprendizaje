@@ -23,7 +23,7 @@ const height = SIZES.height - 40;
 const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 const r = 12;
 
-export class ActivityOne extends Component {
+export class ActivityTwo extends Component {
   constructor(props) {
     super(props);
 
@@ -130,4 +130,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ActivityOne;
+export default ActivityTwo;

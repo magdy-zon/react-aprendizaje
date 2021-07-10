@@ -30,7 +30,7 @@ const Card = (props) => {
           name="file1"
           color= { CARD.buttonDisabled }
           style= { styles.cardIcon }
-          onPress={() => navigation.navigate('Actividad 2')}>
+          onPress={() => navigation.navigate(props.view)}>
         </Icon.Button>
         <Icon.Button
           size={20}

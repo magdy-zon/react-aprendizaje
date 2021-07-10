@@ -1,16 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
-  Animated,
-  SafeAreaView,
-  ScrollView,
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
-  View
+  View,
 } from 'react-native';
 import { useForm } from 'react-hook-form';
-
 
 //Constants an Theme
 import { images, theme } from '../../constants';
@@ -48,11 +43,19 @@ const randomQuestions = [
   }
 ];
 
-const QuestionnaireTeacher = ({ navigation }) => {
+const Professor = ({ navigation }) => {
   const { register, handleSubmit, setValue } = useForm();
 
+  useEffect(() => {
+    register('question1');
+    register('question2');
+    register('question3');
+    register('question4');
+    register('question5');
+  }, [register]);
+
   const randomNumber = (min, max) => {
-    return Math.random() * (max - min) + min - 1
+    return Math.random() * (max - min) + min - 1;
   }
 
   function renderQuestionnaire() {
@@ -106,57 +109,10 @@ const QuestionnaireTeacher = ({ navigation }) => {
     );
   }
 
-  return (
-    <SafeAreaView>
-      <ScrollView style={{
-        paddingHorizontal: 20,
-        paddingTop:60,
-        paddingBottom: 40
-      }}>
-        <View>
-          <Text style={{ ...FONTS.h2 }}>
-          Ayúdanos respondiendo las siguientes preguntas
-          </Text>
-        </View>
-        <View>
-          {renderQuestionnaire()}
-          <TouchableOpacity
-            type= 'submit'
-            style={ styles.buttonSubmitQuestion }
-            onPress={
-              () => {
-                handleSubmit();
-                navigation.navigate('Home')
-              }
-            }
-          >
-            <Text style={{ ...FONTS.h2, color: COLORS.white }}>
-              FINALIZAR
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+  return renderQuestionnaire();
 };
 
 const styles = StyleSheet.create({
-  buttonNext: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: COLORS.blue
-  },
-  buttonSubmitQuestion: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 60,
-    width: '100%',
-    backgroundColor: COLORS.blue,
-    color: COLORS.white,
-    borderRadius: SIZES.radius,
-    marginBottom: 100,
-  },
   borderInput: {
     borderColor: COLORS.borderInput,
     borderRadius: SIZES.radius,
@@ -167,4 +123,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default QuestionnaireTeacher;
+export default Professor;
